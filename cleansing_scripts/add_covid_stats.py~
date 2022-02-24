@@ -1,0 +1,66 @@
+import sys
+
+####### GET DICT OF COVID STATS TO ADD TO FILE
+
+covid_dict = {}
+
+filepath = sys.argv[1]
+f = open(filepath)
+
+
+# fields indeces
+formatted_date_index = 3
+new_tests_index = 5
+currently_hospitalized_index = 7
+deaths_index = 8
+total_tests_index = 9
+
+
+l = f.readline()
+
+while(l):
+    fields = l.split("|")
+    
+    # key is formatted date
+    key = fields[formatted_date_index]
+    # data is tuple of (new tests, currently_hospitalized, deaths, total_tests)
+    data = (fields[new_tests_index], fields[currently_hospitalized_index], fields[deaths_index], fields[total_tests_index])
+
+    # add to dict
+    covid_dict[key] = data
+
+    # get next line
+    l = f.readline()
+
+# close file
+f.close()
+
+######### READ IN REVIEW DATA, ADDING ON COVID STATS BY DATE
+
+date_index = 7
+
+filepath = sys.argv[2] # change to argv
+
+f = open(filepath)
+
+l = f.readline()
+
+while(l):
+
+    fields = l.split("|")
+    
+    try:
+        covid_stats = covid_dict[fields[date_index]]
+        print(l.strip(), end = "|")
+
+        for i in range(len(covid_stats)-1):
+            print(covid_stats[i].strip(), end = "|")
+            
+        print(covid_stats[len(covid_stats)-1].strip())
+        
+    except:
+        pass
+ 
+    l = f.readline()
+
+f.close()

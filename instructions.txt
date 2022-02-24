@@ -1,0 +1,4 @@
+INSTRUCTIONS
+- the make all command will make everything needed, show my final graph, and save it in the main directory
+- as a warning, it takes about half an hour for my data to be cleaned from the raw json.gz format to a pipe delimeted format, so if you plan on running make clean and then make all it will take awhile
+- as an alternative, make almost_clean removes all except that long running file

@@ -1,0 +1,62 @@
+import sys
+
+# get from command line
+class SentimentAnalyzer(object):
+
+    def __init__(self, pos_words_filepath, neg_words_filepath):
+
+        # create dict and add pos and neg words to it with tags 'POS' & 'NEG'
+        # upon initialization the Sentiment object automatically loads words from:
+        # http://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html
+        self.__words = dict()
+        self.__addToDict(neg_words_filepath, 'NEG', self.__words)
+        self.__addToDict(pos_words_filepath, 'POS', self.__words)
+        
+    # filename - file path with words to add
+    # tag - data for dict is the tag for the words
+    # d - dictionary to add to
+    def __addToDict(self, filename, tag, d):
+
+        # open file
+        f = open(filename)
+
+        w = f.readline()
+        while(w):
+            if(w[0] != ';'):
+                self.__words[w.strip().upper()] = tag
+            try: w = f.readline()
+            except: break
+
+        f.close()
+
+    # prints stored words and their tags separated by \t
+    def printWords(self):
+        for key in self.__words:
+            print(key, "\t", self.__words[key])
+
+    
+    # returns tuple  = (pos_rate, neg_rate)
+    # takes in single line and returns sentiment statistics
+    def get_sentimentRates(self, line):
+
+        lineSplit = line.split(' ')
+
+        countPos = 0
+        countNeg = 0
+        countTot = 0
+        
+        for w in lineSplit:
+            w = w.upper() # everything in the dicts is upper
+            try:
+                tag = self.__words[w.strip()]
+                if tag == 'POS':
+                    countPos += 1
+                elif tag == 'NEG':
+                    countNeg += 1
+                countTot += 1
+            except:
+                countTot += 1
+
+        pos_rate = countPos/countTot
+        neg_rate = countNeg/countTot
+        return (pos_rate, neg_rate)

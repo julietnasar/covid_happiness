@@ -1,0 +1,28 @@
+from sentimentAnalysis import SentimentAnalyzer
+import sys
+
+analyzer = SentimentAnalyzer(sys.argv[1], sys.argv[2])  # input positive_words filepath as argv[1]
+                                                        # and negative_words filepath as argv[2]
+
+filepath = sys.argv[3]   # input filepath to add on analysis as argv[3] 
+print(filepath)
+
+f = open(filepath, "r") # open clean_review_data for reading
+
+line = f.readline()
+first = True
+
+while(line):
+
+    if(first):
+        print(line + "pos_rate|neg_rate")
+        first = False
+    else:
+        review = line.split("|")[-1]
+        tup = analyzer.get_sentimentRates(review)
+        print(line.strip() + "|" + str(tup[0]) + "|" + str(tup[1]))
+
+    line = f.readline()
+
+f.close()
+    
