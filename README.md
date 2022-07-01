@@ -1,5 +1,8 @@
 # Covid Happiness Analysis
 
+## Project Summary
+Analyze the correlation between happiness and covid deaths over time
+
 ## Final Chart
 ![comparison](comparison.png)
 
@@ -22,4 +25,5 @@ The next challenge was plotting the data to show a correlation. This proved hard
 The next stop was plotting, and at first I was discouraged. Looking ath the negative rate, it seemed pretty constant. But then I looked at the positive rate. Although the negative rate seems to be pretty constant over time, there is clearly a inverse relationship between the positive rate and covid deaths. In other words, the more covid deaths the less the positive rate. When there is a rise in deaths, there is a dip in the positive rate.
 
 Although I could not see that people got more grumpy over covid, I could see that people got less happy. The difference between these two terms is very nuanced but it makes sense that as deaths rise people don't leave as many ecstatic and happy reviews on Yelp pages. 
+
 
