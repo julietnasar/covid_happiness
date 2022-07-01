@@ -1,7 +1,7 @@
 # Covid Happiness Analysis
 
 ## Final Chart
-![comparison](comparison.pdf)
+![comparison](comparison.png)
 
 ## Motivation/Methodology
 
